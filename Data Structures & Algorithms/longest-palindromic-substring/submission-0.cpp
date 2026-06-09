@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int resLen = 0, resIdx = 0;
+        for(int i = 0; i < s.size(); i++) {
+            int l = i, r = i;
+            while(i >= 0 && r < s.size() && s[l] == s[r]) {
+                l--;
+                r++;
+            }
+            l++;
+            r--;
+            if(r - l + 1 > resLen){
+                resLen = r - l + 1;
+                resIdx = l;
+            }
+            l = i, r = i + 1;
+            while(i >= 0 && r < s.size() && s[l] == s[r]) {
+                l--;
+                r++;
+            }
+            l++;
+            r--;
+            if(r - l + 1 > resLen){
+                resLen = r - l + 1;
+                resIdx = l;
+            }
+        }
+        return s.substr(resIdx, resLen);
+    }
+};
